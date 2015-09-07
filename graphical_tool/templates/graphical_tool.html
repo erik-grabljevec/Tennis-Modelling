@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Graphical representation of player ratings.</title>
+</head>
+    <link href="static/dragit/dragit.css" rel="stylesheet"/>
+    <link href="static/graphical_tool.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="static/selectList/selectList.css" />
+    <link rel="stylesheet" type="text/css" href="static/checkList/ui-lightness/jquery-ui-1.8.23.custom.css" />
+    <link rel="stylesheet" type="text/css" href="static/checkList/checkList.css" />
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="static/checkList/jquery-1.8.0.min.js"></script>
+    <script src="static/checkList/jquery-ui-1.8.23.custom.min.js"></script>
+    <script src="static/checkList/jquery.ui.checkList.js"></script>
+    <script src="static/selectList/selectList.js"></script>
+    <script src="static/dragit/dragit.js" charset="utf-8"></script>
+    <script type='text/javascript'>
+        var data = false;
+        var n_points = false;
+        var tours = false;
+    </script>
+    <script src="static/data.js" charset="utf-8"></script>
+<body>
+
+<div class="main">
+    <div class="left">
+        <div id="viz"></div>
+        <p style="clear:both"></p>
+        <span id="min-time">2003</span>
+        <input type="range" name="points" min="0" step="1" value="0" id="slider-time" style="width:900px">        <span id="max-time">2015</span>
+    </div>
+    <div class="right">
+        <div class="right-up">
+            <div id="playerList"></div>
+        </div>
+        <div class="right-down">
+            <div id='tournamentList'></div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+
+
+<script>
+
+var margin = {top: 20, right: 50, bottom: 30, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.linear()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.category10();
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var svg = d3.select("#viz").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+dragit.time = {min: 0, max: n_points, step: 1, current: 0};
+$('#slider-time').attr("max", n_points - 1);
+
+dragit.object.offsetX = margin.left;
+
+x.domain([1325, 1675]);
+y.domain([1400, 1600]);
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height/2 + ")")
+    .call(xAxis)
+    .append("text")
+    .attr("class", "label")
+    .attr("x", width)
+    .attr("y", -6)
+    .style("text-anchor", "end")
+    .text("Serve");
+
+svg.append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(" + width/2 + ",0)")
+    .call(yAxis)
+    .append("text")
+    .attr("class", "label")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("Return");
+
+svg.selectAll(".tick")
+    .each(function (d) {
+        if ( d === 0 ) {
+            this.remove();
+        }
+    });
+
+var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+            return "<strong>Name:</strong> <span style='color:#000987'>" + d.text + "</span><br>"
+                    + "<strong>Serve:</strong> <span style='color:#000987'>" + d.value[dragit.time.current].serve + "</span><br>"
+                    + "<strong>Return:</strong> <span style='color:rgba(0, 9, 135, 1)'>" + d.value[dragit.time.current].return + "</span>";
+        })
+svg.call(tip);
+
+var selection = [];
+var gPoints;
+var first_time = true;
+var point_selected = false;
+
+function update_selection() {
+    delete gPoints;
+    d3.select("svg").selectAll(".points").remove();
+    gPoints = svg.selectAll(".points")
+                    .data(selection)
+                    .enter()
+                    .append("g")
+                    .attr("class", "points")
+                    .attr("transform", function(d) {
+                      return "translate("+x(d.value[dragit.time.current].serve)+", "+y(d.value[dragit.time.current].return)+")";
+                    })
+                    .on("click", function(d, i) {
+                        var value = d3.select(this).classed("selected");
+                        gPoints.classed("selected", false);
+                        d3.select(this).classed("selected", !value);
+                        if (!value) {
+                            dragit.trajectory.display(d, i);
+                            gPoints.style("opacity", .4)
+                            d3.select(this).style("opacity", 1)
+                            d3.selectAll(".selected").style("opacity", 1)
+                            point_selected = true;
+                        } else {
+                            dragit.trajectory.remove(d, i);
+                            gPoints.style("opacity", 1);
+                            point_selected = false;
+                        }
+                    })
+                    .on("mouseenter", function(d, i) {
+                        if (!point_selected) {
+                            dragit.trajectory.display(d, i);
+                            dragit.utils.animateTrajectory(dragit.trajectory.display(d, i), dragit.time.current, 2500)
+                            /* countrylabel.text(d.name); maybe do this shit */
+                            gPoints.style("opacity", .4)
+                            d3.select(this).style("opacity", 1)
+                            d3.selectAll(".selected").style("opacity", 1)
+                        }
+                    })
+                    .on("mouseleave", function(d, i) {
+                        if (!point_selected) {
+                            dragit.trajectory.remove(d, i);
+                            gPoints.style("opacity", 1);
+                        }
+                    })
+                    .on('mouseover', tip.show)
+                    .on('mouseout', tip.hide)
+                    .call(dragit.object.activate)
+
+    gPoints.append("circle")
+            .attr("r", 12)
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .style("fill", function(d) { return color(d.text); })
+
+    gPoints.append("text")
+            .text(function(d) {
+                var splited = d.text.split(" ");
+                return splited[0].charAt(0) + splited[1].charAt(0)
+            })
+            .attr("transform", "translate(-7, 3)")
+
+    dragit.data = selection.map(function(d, i) {
+        return d.value.map(function(e, i) {
+            return [x(e.serve)+margin.left, y(e.return)+margin.top];
+        })
+    });
+}
+
+function init() {
+    dragit.init("svg");
+    dragit.data = selection.map(function(d, i) {
+        return d.value.map(function(e, i) {
+            return [x(e.serve)+margin.left, y(e.return)+margin.top];
+        })
+    });
+
+    dragit.evt.register("update", update);
+    d3.select("#slider-time").property("value", dragit.time.current);
+    d3.select("#slider-time")
+            .on("mousemove", function() {
+                update(parseInt(this.value), 500);
+                clear_demo();
+            });
+    dragit.trajectory.toggleAll('selected');
+
+    svg.selectAll(".tick").filter(function (d) {return d === 1500;})
+                          .remove();
+}
+
+function update(v) {
+    dragit.time.current = v || dragit.time.current;
+
+    gPoints.transition().duration(100)
+            .attr("transform", function(d) {
+                return "translate("+x(d.value[dragit.time.current].serve)+", "+y(d.value[dragit.time.current].return)+")";
+            })
+
+    d3.select("#slider-time").property("value", dragit.time.current);
+}
+
+function move_pointer(position) {
+    console.log(position);
+    update(position);
+}
+
+function clear_demo() {
+    if(first_time) {
+        svg.transition().duration(0);
+        first_time = false;
+        /* window.clearInterval(demo_interval);
+        countrylabel.text(""); */
+        dragit.trajectory.removeAll();
+        d3.selectAll(".dot").style("opacity", 1)
+    }
+}
+
+$(function() {
+    var items = data.map(function(d, i) {
+        var d2 = {};
+        d2["text"] = d.name;
+        d2["value"] = JSON.stringify(d.rating);
+        return d2;
+    });
+
+    $('#playerList').checkList({
+        listItems: items,
+        onChange: selChange
+    });
+
+    function selChange() {
+        selection = $('#playerList').checkList('getSelection');
+        selection = selection.map(function(d, i) {
+            var d2 = {};
+            d2["text"] = d.text;
+            d2["value"] = JSON.parse(d.value);
+            return d2;
+        });
+
+        $('#selectedItems').text(JSON.stringify(selection));
+
+        update_selection();
+    }
+});
+
+console.log(tours);
+$(function() {
+    initSelectList('#tournamentList', tours);
+});
+
+init();
+
+</script>

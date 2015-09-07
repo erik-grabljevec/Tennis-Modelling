@@ -1,0 +1,64 @@
+.checkList{
+    border:2px solid rgba(0, 5, 255, 0.47);
+	display: block;
+	height: 225px;
+	width: 200px;
+}
+
+.checkList .toolbar{
+
+	background-color: #eee;
+	border-bottom: 1px solid #0005ff;
+	padding: 3px;
+	overflow: hidden;
+    font-weight: bold;
+}
+
+.checkList .toolbar .txtFilter{
+	width: 120px;
+	margin-left: 3px;
+	border:2px solid rgba(0, 5, 255, 0.45);
+}
+
+.checkList .toolbar .filterBox{
+	display: inline-block;
+	float: right;
+	border:2px solid #ccc;
+}
+
+.checkList .toolbar .chkAll{
+	margin-top: 7px;
+	border-right: 1px solid #ccc;
+}
+
+.checkList .table_div{
+    position: relative;
+	width: 100%;
+    height: 76%;
+	border-spacing: 0;
+    overflow: hidden;
+	overflow-y: scroll;
+}
+
+.checkList .table{
+	width: 100%;
+	border-spacing: 0;
+}
+
+.checkList .table td{
+	padding: 2px;
+	border-bottom: 1px solid #eee;
+}
+
+.checkList tr td:first-child{
+	width: 16px;
+}
+
+.checkList tr td label{
+	display: inline-block;
+	width: 100%;
+}
+
+.highlight{
+	background-color: rgba(1, 115, 255, 0.14);
+}

@@ -1,0 +1,42 @@
+\textbf{Model name:} DoubleElo \\ 
+\textbf{Description:}  \\ 
+\textbf{Parameters:} \\
+\[ mu: 1500, K: 11.35, edge: 0.1 \] \\
+\textbf{Error:} 21174.81393 \\
+\textbf{Bias:} 0.40136 \\
+\textbf{Sqme:} 0.21014
+\\
+\\ \\
+\textbf{Correct predict percentage:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      0.69487 & 0.67496 & 0.68019 & 0.68049\\
+\end{array}
+$ \\ \\
+\textbf{Predict mean:} 0.68263 \\
+\textbf{Predict std:} 0.00740 \\
+\textbf{Predict 95\% confidence interval:} (0.65908, 0.70618)
+\\
+\\ \\
+\textbf{Bets placed:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      433 & 448 & 402 & 220\\
+\end{array}
+$ \\ \\
+\textbf{Betting ROI:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      0.05614 & -0.01192 & 0.04114 & -0.00395\\
+\end{array}
+$ \\ \\
+\textbf{ROI mean:} 0.02305 \\
+\textbf{ROI std:} 0.02957 \\
+\textbf{ROI 95\% confidence interval:} (-0.07105, 0.11715) \\
+

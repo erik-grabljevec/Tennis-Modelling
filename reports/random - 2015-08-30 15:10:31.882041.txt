@@ -1,0 +1,42 @@
+\textbf{Model name:} Random \\ 
+\textbf{Model name:}  \\ 
+\textbf{Parameters:} \\
+\[  \] \\
+\textbf{Error:} 35101.25224 \\
+\textbf{Bias:} 0.50307 \\
+\textbf{Sqme:} 0.33622
+\\
+\\ \\
+\textbf{Correct predict percentage:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      0.5047 & 0.49043 & 0.48734 & 0.50732\\
+\end{array}
+$ \\ \\
+\textbf{Predict mean:} 0.49745 \\
+\textbf{Predict std:} 0.00868 \\
+\textbf{Predict 95\% confidence interval:} (0.46983, 0.52507)
+\\
+\\ \\
+\textbf{Bets placed:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      443 & 452 & 410 & 224\\
+\end{array}
+$ \\ \\
+\textbf{Betting ROI:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      -0.04619 & 0.04049 & -0.14341 & -0.22254\\
+\end{array}
+$ \\ \\
+\textbf{ROI mean:} -0.07247 \\
+\textbf{ROI std:} 0.09285 \\
+\textbf{ROI 95\% confidence interval:} (-0.36796, 0.22302) \\
+

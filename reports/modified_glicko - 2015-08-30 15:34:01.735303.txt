@@ -1,0 +1,42 @@
+\textbf{Model name:} DoubleModifiedGlicko \\ 
+\textbf{Model name:}  \\ 
+\textbf{Parameters:} \\
+\[ mu: 1500.0, Q: 0.0057565, c: 10.0, start\_sigma: 300.0, end\_sigma: 100.0 \] \\
+\textbf{Error:} 22672.95224 \\
+\textbf{Bias:} 0.37766 \\
+\textbf{Sqme:} 0.21810
+\\
+\\ \\
+\textbf{Correct predict percentage:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      0.69993 & 0.6719 & 0.67216 & 0.67683\\
+\end{array}
+$ \\ \\
+\textbf{Predict mean:} 0.68020 \\
+\textbf{Predict std:} 0.01156 \\
+\textbf{Predict 95\% confidence interval:} (0.64343, 0.71698)
+\\
+\\ \\
+\textbf{Bets placed:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      437 & 445 & 409 & 218\\
+\end{array}
+$ \\ \\
+\textbf{Betting ROI:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      0.05295 & -0.0189 & 0.03421 & -0.06743\\
+\end{array}
+$ \\ \\
+\textbf{ROI mean:} 0.00929 \\
+\textbf{ROI std:} 0.04249 \\
+\textbf{ROI 95\% confidence interval:} (-0.12592, 0.14450) \\
+

@@ -1,0 +1,42 @@
+\textbf{Model name:} DoubleGlicko2 \\ 
+\textbf{Model name:}  \\ 
+\textbf{Parameters:} \\
+\[ mu: 1500.0, tau: 1, phi: 350.0, sigma: 0.06, eps: 1e-06 \] \\
+\textbf{Error:} 32567.94229 \\
+\textbf{Bias:} 0.38071 \\
+\textbf{Sqme:} 0.26045
+\\
+\\ \\
+\textbf{Correct predict percentage:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      0.68185 & 0.64663 & 0.65127 & 0.64512\\
+\end{array}
+$ \\ \\
+\textbf{Predict mean:} 0.65622 \\
+\textbf{Predict std:} 0.01497 \\
+\textbf{Predict 95\% confidence interval:} (0.60857, 0.70386)
+\\
+\\ \\
+\textbf{Bets placed:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      445 & 456 & 416 & 222\\
+\end{array}
+$ \\ \\
+\textbf{Betting ROI:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      0.06858 & -0.1025 & 0.02788 & 0.03707\\
+\end{array}
+$ \\ \\
+\textbf{ROI mean:} 0.00235 \\
+\textbf{ROI std:} 0.06983 \\
+\textbf{ROI 95\% confidence interval:} (-0.21988, 0.22457) \\
+

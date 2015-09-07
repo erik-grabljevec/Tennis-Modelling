@@ -1,0 +1,42 @@
+\textbf{Model name:} DoubleEloSurface \\ 
+\textbf{Description:}  \\ 
+\textbf{Parameters:} \\
+\[ mu: 1500, K: 11.35, edge: 0.1 \] \\
+\textbf{Error:} 23789.36575 \\
+\textbf{Bias:} 0.41992 \\
+\textbf{Sqme:} 0.21467
+\\
+\\ \\
+\textbf{Correct predict percentage:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      0.67395 & 0.65459 & 0.62112 & 0.63994\\
+\end{array}
+$ \\ \\
+\textbf{Predict mean:} 0.64740 \\
+\textbf{Predict std:} 0.01939 \\
+\textbf{Predict 95\% confidence interval:} (0.58571, 0.70910)
+\\
+\\ \\
+\textbf{Bets placed:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      2627 & 2905 & 5423 & 4163\\
+\end{array}
+$ \\ \\
+\textbf{Betting ROI:} \\ \\
+$
+\begin{array}{*{4}{r}}
+    2012 & 2013 & 2014 & 2015 \\
+    \hline
+      0.03897 & 0.01442 & -0.01667 & 0.147\\
+\end{array}
+$ \\ \\
+\textbf{ROI mean:} 0.04404 \\
+\textbf{ROI std:} 0.06644 \\
+\textbf{ROI 95\% confidence interval:} (-0.16740, 0.25548) \\
+
