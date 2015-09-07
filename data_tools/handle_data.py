@@ -1,7 +1,7 @@
-'''
+"""
 This module provides functions for data retrieval.
 Set database connection information in file: settings.py
-'''
+"""
 
 __author__ = 'riko'
 

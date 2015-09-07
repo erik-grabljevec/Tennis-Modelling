@@ -1,11 +1,11 @@
-'''
+"""
 Script that builds whole database.
 Set database connection information in file: settings.py
 Read about database structure in docs.
 Data is scrapped from next two sources:
 - http://www.tennis-data.co.uk/alldata.php
 - https://github.com/JeffSackmann/tennis_atp
-'''
+"""
 
 START_YEAR = 2003
 END_YEAR = 2015
