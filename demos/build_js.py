@@ -7,5 +7,5 @@ directory = "../graphical_tool/static/data.js"
 n = 100
 
 # ENJOY
-m = models.DoubleModifiedGlickoModel()
+m = models.DoubleEloModel()
 m.create_data_js(train_data, n, directory)

@@ -17,10 +17,18 @@ import data_tools as dt
 import models
 import settings as stg
 
+################################################################################
+#       Set variables.                                                         #
+################################################################################
 
-model = models.DoubleEloSurfaceModel()
+SURFACE = None
+model = models.DoubleEloModel()
 
-file = stg.ROOT_PATH + "data/stratagem_data.p"
+################################################################################
+#       Run analysis.                                                          #
+################################################################################
+
+file = stg.ROOT_PATH + "data/more_data.p"
 data = pickle.load(open(file, "rb" ))
 
 bo3_mask = (data["match_type"] == "bo3")
@@ -30,15 +38,17 @@ data = data.rename(columns={"ID1":"Winner", "ID2":"Loser",
                             "ID_C": "Surface"})
 data["Best_of"][bo3_mask] = 3
 data["Best_of"][~bo3_mask] = 5
-data = data.sort("Date")
 
-model = models.DoubleEloSurfaceModel()
+if SURFACE != None:
+    data = data[data["Surface"] == SURFACE]
+
+data = data.sort("Date")
 
 train_range = [datetime.date(2003, 1, 1), datetime.date(2012, 1, 1)]
 train_data = dt.filter_data_time_range(data, train_range)
 model.train(train_data, True)
 
-test_range = [datetime.date(2012, 1, 1), datetime.date(2013, 1, 1)]
+test_range = [datetime.date(2012, 1, 1), datetime.date(2015, 1, 1)]
 test_data = dt.filter_data_time_range(data, test_range)
 df = model.test(test_data, True)
 

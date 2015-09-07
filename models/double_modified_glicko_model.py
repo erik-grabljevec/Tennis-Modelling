@@ -392,28 +392,3 @@ class DoubleModifiedGlickoModel(tm.TennisRankingModel):
             f.write("tours = ")
             f.write(str(tours))
 
-"""
-Example
-
-m = Match()
-modg = mg.ModifiedGlicko()
-p1 = m.create_player("A")
-p2 = m.create_player("B")
-
-p1, p2 = m.match(p1, p2, 0.4, 0.55)
-p1, p2 = m.match(p1, p2, 0.6, 0.75)
-p1, p2 = m.match(p1, p2, 0.8, 0.9)
-p1, p2 = m.match(p1, p2, 0.2, 0.3)
-p1, p2 = m.match(p1, p2, 0.4, 0.55)
-p1, p2 = m.match(p1, p2, 0.6, 0.75)
-p1, p2 = m.match(p1, p2, 0.8, 0.9)
-p1, p2 = m.match(p1, p2, 0.2, 0.8)
-
-print p1
-print p2
-print p1.mg_att.sigma
-print "Expect: ", m.expect(p1, p2)
-print "Impact: ", modg.impact(p1.mg_att)
-print "Probability: ", m.win_probabilities(p1, p2)
-
-"""

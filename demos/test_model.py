@@ -3,8 +3,8 @@ import models
 import data_tools as dt
 
 
-model = models.DoubleModifiedGlickoModel()
+model = models.DoubleEloModel()
 
-data = dt.get_main_matches_data()
+data = dt.get_main_matches_data("Grass")
 
-models.analyse_ranking_model(model, report_name="elo_re", verbose=True)
+models.analyse_ranking_model(model, report_name="double_elo_sur", verbose=True)
