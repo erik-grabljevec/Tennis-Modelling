@@ -1,4 +1,6 @@
 '''
+(c) Stratagem
+
 Collection of functions that calculate expected match probabilities,
 durations, distributions etc.
 It is implemented as effectively as possible using numpy and cython.
